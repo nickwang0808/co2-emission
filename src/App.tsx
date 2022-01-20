@@ -1,9 +1,15 @@
-import { Slider, Stack } from "@mui/material";
 import React, { useState } from "react";
+import ReactTooltip from "react-tooltip";
 import "./App.css";
+import MapChart from "./component/MapChart";
+import Title from "./component/Title";
+import YearSlider from "./component/YearSlider";
 
 function App() {
   const [year, setYear] = useState<number>(1990);
+
+  const [content, setContent] = useState("");
+
   return (
     <div
       style={{
@@ -11,20 +17,10 @@ function App() {
         margin: "auto",
       }}
     >
-      <h1 style={{ textAlign: "center" }}>CO2 Emission By Year {year}</h1>
-      <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
-        <div>1990</div>
-        <Slider
-          aria-label="Volume"
-          value={year}
-          onChange={(_, value) => {
-            typeof value === "number" && setYear(value);
-          }}
-          min={1990}
-          max={2018}
-        />
-        <div>2019</div>
-      </Stack>
+      <Title year={year} />
+      <YearSlider {...{ year, setYear }} />
+      <MapChart setTooltipContent={setContent} />
+      <ReactTooltip>{content}</ReactTooltip>
     </div>
   );
 }
