@@ -1,5 +1,7 @@
 # CO2 Emissions Challenge
 
+[live demo](https://nickwang0808.github.io/co2-emission/)
+
 For this Frontend challenge, we'd like you to implement a react app that visualizes historical CO2 emissions by country. The user should also be able to browse the emissions data over different years. You will find the useful links helpful to get started.
 
 ---
