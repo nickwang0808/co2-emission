@@ -8,7 +8,7 @@ import YearSlider from "./component/YearSlider";
 import dataSource from "./owid-co2-data.json";
 
 function App() {
-  const [year, setYear] = useState<number>(1990);
+  const [year, setYear] = useState<number>(1800);
 
   const [country, setCountry] = useState("");
 
@@ -17,7 +17,7 @@ function App() {
       (yearGroup: any) => yearGroup.year === year
     );
 
-    if (!foundCountry) {
+    if (!foundCountry && country) {
       return <span>No data available</span>;
     }
 
@@ -30,7 +30,11 @@ function App() {
     }
 
     return formattedData.map((data) => (
-      <TooltipContent key={data[0]} value={data[1]} />
+      <TooltipContent
+        dataKey={data[0]}
+        dataValue={data[1]}
+        key={JSON.stringify(data)}
+      />
     ));
   }, [country, year]);
 
@@ -44,7 +48,7 @@ function App() {
       <Title year={year} />
       <YearSlider {...{ year, setYear }} />
       <MapChart setCountry={setCountry} />
-      <ReactTooltip>{countryData}</ReactTooltip>
+      {country && <ReactTooltip place="left">{countryData}</ReactTooltip>}
     </div>
   );
 }
