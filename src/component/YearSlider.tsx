@@ -19,7 +19,7 @@ const YearSlider: FC<YearSliderProps> = ({ year, setYear }) => {
         min={1800}
         max={2018}
       />
-      <div>2019</div>
+      <div>2018</div>
     </Stack>
   );
 };
