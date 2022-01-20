@@ -8,7 +8,14 @@ interface YearSliderProps {
 
 const YearSlider: FC<YearSliderProps> = ({ year, setYear }) => {
   return (
-    <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+    <Stack
+      spacing={2}
+      direction="row"
+      sx={{ mb: 1 }}
+      alignItems="center"
+      width={500}
+      style={{ margin: "auto" }}
+    >
       <div>1800</div>
       <Slider
         aria-label="year range"
