@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Slider, Stack } from "@mui/material";
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [year, setYear] = useState<number>(1990);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>CO2 Emission By Year {year}</h1>
+      <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+        <div>1990</div>
+        <Slider
+          aria-label="Volume"
+          value={year}
+          onChange={(_, value) => {
+            typeof value === "number" && setYear(value);
+          }}
+          min={1990}
+          max={2018}
+        />
+        <div>2019</div>
+      </Stack>
+    </>
   );
 }
 
