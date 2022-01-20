@@ -5,8 +5,13 @@ import "./App.css";
 function App() {
   const [year, setYear] = useState<number>(1990);
   return (
-    <>
-      <h1>CO2 Emission By Year {year}</h1>
+    <div
+      style={{
+        width: "1000px",
+        margin: "auto",
+      }}
+    >
+      <h1 style={{ textAlign: "center" }}>CO2 Emission By Year {year}</h1>
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
         <div>1990</div>
         <Slider
@@ -20,7 +25,7 @@ function App() {
         />
         <div>2019</div>
       </Stack>
-    </>
+    </div>
   );
 }
 
