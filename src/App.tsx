@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import "./App.css";
 import MapChart from "./component/MapChart";
 import Title from "./component/Title";
+import TooltipContent from "./component/TooltipContent";
 import YearSlider from "./component/YearSlider";
+import dataSource from "./owid-co2-data.json";
 
 function App() {
   const [year, setYear] = useState<number>(1990);
 
   const [country, setCountry] = useState("");
+
+  const countryData = useMemo(() => {
+    const foundCountry = (dataSource as any)[country]?.data?.find(
+      (yearGroup: any) => yearGroup.year === year
+    );
+
+    if (!foundCountry) {
+      return <span>No data available</span>;
+    }
+
+    let formattedData: [string, string][] = [];
+    for (const key in foundCountry) {
+      if (Object.prototype.hasOwnProperty.call(foundCountry, key)) {
+        const element = foundCountry[key];
+        formattedData.push([key, element]);
+      }
+    }
+
+    return formattedData.map((data) => (
+      <TooltipContent key={data[0]} value={data[1]} />
+    ));
+  }, [country, year]);
 
   return (
     <div
@@ -20,7 +44,7 @@ function App() {
       <Title year={year} />
       <YearSlider {...{ year, setYear }} />
       <MapChart setCountry={setCountry} />
-      <ReactTooltip>{country}</ReactTooltip>
+      <ReactTooltip>{countryData}</ReactTooltip>
     </div>
   );
 }
