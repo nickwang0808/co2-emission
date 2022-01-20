@@ -20,10 +20,10 @@ const rounded = (num: number) => {
 };
 
 interface MapChartProps {
-  setTooltipContent: (content: string) => void;
+  setCountry: (content: string) => void;
 }
 
-const MapChart: FC<MapChartProps> = ({ setTooltipContent }) => {
+const MapChart: FC<MapChartProps> = ({ setCountry }) => {
   return (
     <>
       <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
@@ -35,11 +35,11 @@ const MapChart: FC<MapChartProps> = ({ setTooltipContent }) => {
                   key={geo.rsmKey}
                   geography={geo}
                   onMouseEnter={() => {
-                    const { NAME, POP_EST } = geo.properties;
-                    setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+                    const { NAME } = geo.properties;
+                    setCountry(NAME);
                   }}
                   onMouseLeave={() => {
-                    setTooltipContent("");
+                    setCountry("");
                   }}
                   style={{
                     default: {

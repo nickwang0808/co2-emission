@@ -8,7 +8,7 @@ import YearSlider from "./component/YearSlider";
 function App() {
   const [year, setYear] = useState<number>(1990);
 
-  const [content, setContent] = useState("");
+  const [country, setCountry] = useState("");
 
   return (
     <div
@@ -19,8 +19,8 @@ function App() {
     >
       <Title year={year} />
       <YearSlider {...{ year, setYear }} />
-      <MapChart setTooltipContent={setContent} />
-      <ReactTooltip>{content}</ReactTooltip>
+      <MapChart setCountry={setCountry} />
+      <ReactTooltip>{country}</ReactTooltip>
     </div>
   );
 }
